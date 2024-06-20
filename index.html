@@ -1,0 +1,72 @@
+1. Setting Up Your React Project
+Assuming you have create-react-app or a similar setup, initialize your project:
+npx create-react-app car-inventory-app
+cd car-inventory-app
+2. Create Components
+Create three components related to your car inventory:
+•	CarList: Display a list of cars.
+•	CarDetails: Show details of a selected car.
+•	AddCarForm: Form to add new cars to the inventory.
+Create these components in the src/components folder.
+3. Routing Functionality
+Implement routing using react-router-dom to navigate between different components:
+Install react-router-dom:
+npm install react-router-dom
+Set up routing in your App.js:
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CarList from './components/CarList';
+import CarDetails from './components/CarDetails';
+import AddCarForm from './components/AddCarForm';function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" exact component={CarList} />
+        <Route path="/car/:id" component={CarDetails} />
+        <Route path="/add-car" component={AddCarForm} />
+      </Switch>
+    </Router>);}
+
+export default App;
+4. Prop Accepting Component
+Modify one of your components (e.g., CarDetails) to accept a prop (in this case, id):
+import React from 'react';const CarDetails = ({ match }) => { const carId = match.params.id; // Fetch car details based on carId
+
+  return (
+    <div>
+      <h2>Car Details</h2>
+      <p>Showing details for car with ID: {carId}</p>
+      {/* Display car details here */}  </div>)};
+
+export default CarDetails;
+5. Basic Styling
+Style your components using basic CSS or use a component library like Material-UI for enhanced styling:
+Install Material-UI:
+npm install @mui/material @emotion/react @emotion/styled
+Example usage in a component:
+import React from 'react';
+import { makeStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: 'blue',
+    color: 'white',
+    padding: '10px',
+    borderRadius: '5px', },});
+
+const AddCarForm = () => {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <h2>Add New Car</h2>
+      <form>
+        {/* Form fields */}
+        <Button className={classes.root}>Submit</Button>
+      </form>
+    </div>)};
+
+export default AddCarForm;
+6. Integration and Testing
+Integrate these components, ensuring they interact correctly (e.g., adding new cars updates the list, clicking on a car shows its details). Test thoroughly to ensure functionality and styling meet your requirements.
